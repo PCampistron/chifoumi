@@ -2,6 +2,8 @@
 #define CHIFOUMIVUE_H
 
 #include <QMainWindow>
+#include <chifoumi.h>
+#include <QDebug>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class ChifoumiVue; }
@@ -14,8 +16,17 @@ class ChifoumiVue : public QMainWindow
 public:
     ChifoumiVue(QWidget *parent = nullptr);
     ~ChifoumiVue();
+    void setModele(Chifoumi *m);
+
+public slots:
+    void jouerSigne(char c);
+    void jouerCiseaux();
+    void jouerFeuille();
+    void jouerPierre();
+    void initialiserPartie();
 
 private:
     Ui::ChifoumiVue *ui;
+    Chifoumi *_modele;
 };
 #endif // CHIFOUMIVUE_H

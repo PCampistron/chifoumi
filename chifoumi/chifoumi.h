@@ -7,6 +7,7 @@
 #ifndef CHIFOUMI_H
 #define CHIFOUMI_H
 #include <iostream>
+#include <chifoumivue.h>
 
 using namespace std;
 
