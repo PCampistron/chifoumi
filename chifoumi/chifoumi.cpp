@@ -105,9 +105,7 @@ Chifoumi::UnCoup Chifoumi::genererUnCoup()
 {
     UnCoup valeurGeneree;   // valeur à retourner
 
-    randMinMax(1,3);
-
-    switch (randMinMax(1,3)) {
+    switch (randMinMax(1,4)) {
         case 1:
         valeurGeneree = pierre;
         break;
@@ -157,6 +155,11 @@ void Chifoumi::majScores(char p_gagnant) {
             scoreMachine += 1;
         }
     }
+}
+
+void Chifoumi::majCoupMachine()
+{
+    coupMachine = genererUnCoup();
 }
 
 void Chifoumi::initScores() {

@@ -19,6 +19,9 @@ ChifoumiVue::ChifoumiVue(QWidget *parent)
     connect(ui->bNouvellePartie, SIGNAL(clicked()),
             this, SLOT(initialiserPartie()));
 
+    this->setFixedSize(this->sizeHint());
+
+    ui->bNouvellePartie->setFocus();
 }
 
 ChifoumiVue::~ChifoumiVue()
@@ -32,22 +35,77 @@ void ChifoumiVue::setModele(Chifoumi *m)
     _modele = m;
 }
 
+void ChifoumiVue::majInterface()
+{
+    _modele->majScores(_modele->determinerGagnant());
+
+    Chifoumi::UnCoup coupJoueur, coupMachine;
+
+    coupJoueur = _modele->getCoupJoueur();
+    coupMachine = _modele->getCoupMachine();
+
+    if (coupJoueur == _modele->ciseau)
+    {
+        ui->lActionJoueur->setPixmap(QPixmap(":/images/ciseau_115.png"));
+    }
+
+    if (coupJoueur == _modele->papier)
+    {
+        ui->lActionJoueur->setPixmap(QPixmap(":/images/papier_115.png"));
+    }
+
+    if (coupJoueur == _modele->pierre)
+    {
+        ui->lActionJoueur->setPixmap(QPixmap(":/images/pierre_115.png"));
+    }
+
+    if (coupJoueur == _modele->rien)
+    {
+        ui->lActionJoueur->setPixmap(QPixmap(":/images/rien_115.png"));
+    }
+
+    if (coupMachine == _modele->ciseau)
+    {
+        ui->lActionMachine->setPixmap(QPixmap(":/images/ciseau_115.png"));
+    }
+
+    if (coupMachine == _modele->papier)
+    {
+        ui->lActionMachine->setPixmap(QPixmap(":/images/papier_115.png"));
+    }
+
+    if (coupMachine == _modele->pierre)
+    {
+        ui->lActionMachine->setPixmap(QPixmap(":/images/pierre_115.png"));
+    }
+
+    if (coupMachine == _modele->rien)
+    {
+        ui->lActionMachine->setPixmap(QPixmap(":/images/rien_115.png"));
+    }
+
+    ui->lScoreJoueur->setText(QString::number(_modele->getScoreJoueur()));
+
+    ui->lScoreMachine->setText(QString::number(_modele->getScoreMachine()));
+}
+
 
 void ChifoumiVue::jouerSigne(char c)
 {
-    QString signe;
     switch (c) {
         case 'c':
-            signe = "Ciseaux";
+            _modele->setCoupJoueur(_modele->ciseau);
             break;
         case 'f':
-            signe = "Feuille";
+            _modele->setCoupJoueur(_modele->papier);
             break;
         case 'p':
-            signe = "Pierre";
+            _modele->setCoupJoueur(_modele->pierre);
             break;
     }
-    qDebug() << signe;
+    _modele->majCoupMachine();
+
+    majInterface();
 }
 
 void ChifoumiVue::jouerCiseaux()
@@ -68,5 +126,14 @@ void ChifoumiVue::jouerPierre()
 void ChifoumiVue::initialiserPartie()
 {
     qDebug() << "Initialisation de la partie";
+
+    _modele->initCoups();
+    _modele->initScores();
+
+    ui->bCiseaux->setEnabled(true);
+    ui->bFeuille->setEnabled(true);
+    ui->bPierre->setEnabled(true);
+
+    majInterface();
 }
 

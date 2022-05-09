@@ -7,7 +7,6 @@
 #ifndef CHIFOUMI_H
 #define CHIFOUMI_H
 #include <iostream>
-#include <chifoumivue.h>
 
 using namespace std;
 
@@ -64,6 +63,9 @@ class Chifoumi
 				- 1 point pour le gagnant lorsqu'il y a un gagnant
 				- 0 point en cas de match nul
 			*/
+
+        void majCoupMachine();
+
         void initScores();
             /* initialise à 0 les attributs scoreJoueur et scoreMachine
                NON indispensable */

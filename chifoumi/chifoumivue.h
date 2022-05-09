@@ -17,6 +17,7 @@ public:
     ChifoumiVue(QWidget *parent = nullptr);
     ~ChifoumiVue();
     void setModele(Chifoumi *m);
+    void majInterface();
 
 public slots:
     void jouerSigne(char c);
