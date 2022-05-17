@@ -10,11 +10,13 @@ CONFIG += c++11
 
 SOURCES += \
     chifoumi.cpp \
+    chifoumipresentation.cpp \
     main.cpp \
     chifoumivue.cpp
 
 HEADERS += \
     chifoumi.h \
+    chifoumipresentation.h \
     chifoumivue.h
 
 FORMS += \

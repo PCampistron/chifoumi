@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <chifoumi.h>
+#include "chifoumipresentation.h"
 #include <QDebug>
 
 QT_BEGIN_NAMESPACE
@@ -16,18 +17,11 @@ class ChifoumiVue : public QMainWindow
 public:
     ChifoumiVue(QWidget *parent = nullptr);
     ~ChifoumiVue();
-    void setModele(Chifoumi *m);
-    void majInterface();
-
-public slots:
-    void jouerSigne(char c);
-    void jouerCiseaux();
-    void jouerFeuille();
-    void jouerPierre();
-    void initialiserPartie();
+    void nvlleConnexion(QObject *c);
+    void supprConnexion(QObject *c);
+    void majInterface(Chifoumi::UnCoup, Chifoumi::UnCoup, int, int, chifoumiPresentation::etatJeu);
 
 private:
     Ui::ChifoumiVue *ui;
-    Chifoumi *_modele;
 };
 #endif // CHIFOUMIVUE_H

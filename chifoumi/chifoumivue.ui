@@ -257,9 +257,6 @@
        </layout>
       </item>
       <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_3"/>
-      </item>
-      <item>
        <widget class="QGroupBox" name="groupBox">
         <property name="minimumSize">
          <size>
@@ -428,9 +425,6 @@
          </item>
         </layout>
        </widget>
-      </item>
-      <item>
-       <layout class="QHBoxLayout" name="horizontalLayout"/>
       </item>
       <item>
        <layout class="QHBoxLayout" name="buttonHLayout">
