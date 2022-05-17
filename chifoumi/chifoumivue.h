@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <chifoumi.h>
 #include <QDebug>
+#include <QMessageBox>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class ChifoumiVue; }
@@ -29,5 +30,8 @@ public slots:
 private:
     Ui::ChifoumiVue *ui;
     Chifoumi *_modele;
+
+private slots:
+    void aProposDe();
 };
 #endif // CHIFOUMIVUE_H

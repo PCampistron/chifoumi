@@ -18,6 +18,8 @@ ChifoumiVue::ChifoumiVue(QWidget *parent)
 
     connect(ui->bNouvellePartie, SIGNAL(clicked()),
             this, SLOT(initialiserPartie()));
+    connect(ui->actionA_propos_de, SIGNAL(triggered()),
+            this, SLOT(aProposDe()));
 
     this->setFixedSize(this->sizeHint());
 
@@ -125,7 +127,7 @@ void ChifoumiVue::jouerPierre()
 
 void ChifoumiVue::initialiserPartie()
 {
-    qDebug() << "Initialisation de la partie";
+
 
     _modele->initCoups();
     _modele->initScores();
@@ -135,5 +137,15 @@ void ChifoumiVue::initialiserPartie()
     ui->bPierre->setEnabled(true);
 
     majInterface();
+}
+
+void ChifoumiVue::aProposDe()
+{
+    QMessageBox *msgBox = new QMessageBox;
+        msgBox->setIcon(QMessageBox::Information);
+        msgBox->setStandardButtons(QMessageBox::Ok);
+        msgBox->setText("Programme modèle des enseignants");
+        msgBox->setWindowTitle("A propos de cette application");
+        msgBox->exec();
 }
 
