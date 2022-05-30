@@ -7,6 +7,23 @@ ChifoumiVue::ChifoumiVue(QWidget *parent)
 {
     ui->setupUi(this);
 
+<<<<<<< HEAD
+=======
+    connect(ui->bCiseaux, SIGNAL(clicked()),
+            this, SLOT(jouerCiseaux()));
+
+    connect(ui->bFeuille, SIGNAL(clicked()),
+            this, SLOT(jouerFeuille()));
+
+    connect(ui->bPierre, SIGNAL(clicked()),
+            this, SLOT(jouerPierre()));
+
+    connect(ui->bNouvellePartie, SIGNAL(clicked()),
+            this, SLOT(initialiserPartie()));
+    connect(ui->actionA_propos_de, SIGNAL(triggered()),
+            this, SLOT(aProposDe()));
+
+>>>>>>> 90fe40fbc9d03325475c5dfc372aa503a9694d67
     this->setFixedSize(this->sizeHint());
 
     ui->bNouvellePartie->setFocus();
@@ -114,4 +131,40 @@ void ChifoumiVue::majInterface(Chifoumi::UnCoup coupJoueur, Chifoumi::UnCoup cou
 }
 
 
+<<<<<<< HEAD
+=======
+void ChifoumiVue::jouerFeuille()
+{
+    emit(jouerSigne('f'));
+}
+
+void ChifoumiVue::jouerPierre()
+{
+    emit(jouerSigne('p'));
+}
+
+void ChifoumiVue::initialiserPartie()
+{
+
+
+    _modele->initCoups();
+    _modele->initScores();
+
+    ui->bCiseaux->setEnabled(true);
+    ui->bFeuille->setEnabled(true);
+    ui->bPierre->setEnabled(true);
+
+    majInterface();
+}
+>>>>>>> 90fe40fbc9d03325475c5dfc372aa503a9694d67
+
+void ChifoumiVue::aProposDe()
+{
+    QMessageBox *msgBox = new QMessageBox;
+        msgBox->setIcon(QMessageBox::Information);
+        msgBox->setStandardButtons(QMessageBox::Ok);
+        msgBox->setText("Programme modèle des enseignants");
+        msgBox->setWindowTitle("A propos de cette application");
+        msgBox->exec();
+}
 
