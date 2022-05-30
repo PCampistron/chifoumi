@@ -25,8 +25,5 @@ public:
 private:
     Ui::ChifoumiVue *ui;
     Chifoumi *_modele;
-
-private slots:
-    void aProposDe();
 };
 #endif // CHIFOUMIVUE_H
