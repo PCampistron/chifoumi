@@ -52,8 +52,6 @@ void chifoumiPresentation::jouerSigne(char c)
     _modele->majScores(_modele->determinerGagnant());
 
     _vue->majInterface(_modele->getCoupJoueur(), _modele->getCoupMachine(), _modele->getScoreJoueur(), _modele->getScoreMachine(), getEtat());
-
-    qDebug() << _modele->getScoreJoueur();
 }
 
 chifoumiPresentation::etatJeu chifoumiPresentation::getEtat()
@@ -81,10 +79,18 @@ void chifoumiPresentation::jouerPierre()
     emit(jouerSigne('p'));
 }
 
+void chifoumiPresentation::aProposDe()
+{
+    QMessageBox *msgBox = new QMessageBox;
+    msgBox->setIcon(QMessageBox::Information);
+    msgBox->setStandardButtons(QMessageBox::Ok);
+    msgBox->setText("Version 3 \nProgramme modèle de Campistron - Doyhenard - Sokhna");
+    msgBox->setWindowTitle("A propos de cette application");
+    msgBox->exec();
+}
+
 void chifoumiPresentation::initialiserPartie()
 {
-    qDebug() << "Initialisation de la partie";
-
     _modele->initCoups();
     _modele->initScores();
 

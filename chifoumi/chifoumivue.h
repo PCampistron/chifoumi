@@ -5,6 +5,7 @@
 #include <chifoumi.h>
 #include "chifoumipresentation.h"
 #include <QDebug>
+#include <QMessageBox>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class ChifoumiVue; }
@@ -23,5 +24,6 @@ public:
 
 private:
     Ui::ChifoumiVue *ui;
+    Chifoumi *_modele;
 };
 #endif // CHIFOUMIVUE_H

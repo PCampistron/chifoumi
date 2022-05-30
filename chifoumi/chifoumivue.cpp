@@ -30,21 +30,27 @@ void ChifoumiVue::nvlleConnexion(QObject *c)
 
     connect(ui->bNouvellePartie, SIGNAL(clicked()),
             c, SLOT(initialiserPartie()));
+
+    connect(ui->actionA_propos_de, SIGNAL(triggered()),
+            c, SLOT(aProposDe()));
 }
 
 void ChifoumiVue::supprConnexion(QObject *c)
 {
     disconnect(ui->bCiseaux, SIGNAL(clicked()),
-            c, SLOT(jouerCiseaux()));
+               c, SLOT(jouerCiseaux()));
 
     disconnect(ui->bFeuille, SIGNAL(clicked()),
-            c, SLOT(jouerFeuille()));
+               c, SLOT(jouerFeuille()));
 
     disconnect(ui->bPierre, SIGNAL(clicked()),
-            c, SLOT(jouerPierre()));
+               c, SLOT(jouerPierre()));
 
     disconnect(ui->bNouvellePartie, SIGNAL(clicked()),
-            c, SLOT(initialiserPartie()));
+               c, SLOT(initialiserPartie()));
+
+    disconnect(ui->actionA_propos_de, SIGNAL(triggered()),
+               c, SLOT(aProposDe()));
 }
 
 void ChifoumiVue::majInterface(Chifoumi::UnCoup coupJoueur, Chifoumi::UnCoup coupMachine, int scoreJoueur, int scoreMachine, chifoumiPresentation::etatJeu etatJeu)
@@ -95,18 +101,17 @@ void ChifoumiVue::majInterface(Chifoumi::UnCoup coupJoueur, Chifoumi::UnCoup cou
 
     switch(etatJeu)
     {
-        case chifoumiPresentation::etatInitial:
-            ui->bCiseaux->setEnabled(false);
-            ui->bFeuille->setEnabled(false);
-            ui->bPierre->setEnabled(false);
+    case chifoumiPresentation::etatInitial:
+        ui->bCiseaux->setEnabled(false);
+        ui->bFeuille->setEnabled(false);
+        ui->bPierre->setEnabled(false);
         break;
-        case chifoumiPresentation::partieEnCours:
-            ui->bCiseaux->setEnabled(true);
-            ui->bFeuille->setEnabled(true);
-            ui->bPierre->setEnabled(true);
+    case chifoumiPresentation::partieEnCours:
+        ui->bCiseaux->setEnabled(true);
+        ui->bFeuille->setEnabled(true);
+        ui->bPierre->setEnabled(true);
     }
 }
-
 
 
 

@@ -26,6 +26,7 @@ public slots:
     void jouerFeuille();
     void jouerPierre();
     void initialiserPartie();
+    void aProposDe();
 
 private:
     bool etatBouton;
