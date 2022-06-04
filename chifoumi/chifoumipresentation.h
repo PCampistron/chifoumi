@@ -20,12 +20,14 @@ public:
     void jouerSigne(char c);
     etatJeu getEtat();
     void setEtat(etatJeu);
+    void testGagnant();
 
 public slots:
     void jouerCiseaux();
     void jouerFeuille();
     void jouerPierre();
     void initialiserPartie();
+    void demanderPremiereMajInterface();
     void aProposDe();
 
 private:

@@ -20,7 +20,10 @@ public:
     ~ChifoumiVue();
     void nvlleConnexion(QObject *c);
     void supprConnexion(QObject *c);
-    void majInterface(Chifoumi::UnCoup, Chifoumi::UnCoup, int, int, chifoumiPresentation::etatJeu);
+    void majInterface(Chifoumi::UnCoup, Chifoumi::UnCoup, int, int, int, chifoumiPresentation::etatJeu);
+
+signals:
+    void premiereMajInterface();
 
 private:
     Ui::ChifoumiVue *ui;

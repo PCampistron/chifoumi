@@ -33,6 +33,11 @@ void ChifoumiVue::nvlleConnexion(QObject *c)
 
     connect(ui->actionA_propos_de, SIGNAL(triggered()),
             c, SLOT(aProposDe()));
+
+    connect(this, SIGNAL(premiereMajInterface()),
+            c, SLOT(demanderPremiereMajInterface()));
+
+    emit(premiereMajInterface());
 }
 
 void ChifoumiVue::supprConnexion(QObject *c)
@@ -53,7 +58,7 @@ void ChifoumiVue::supprConnexion(QObject *c)
                c, SLOT(aProposDe()));
 }
 
-void ChifoumiVue::majInterface(Chifoumi::UnCoup coupJoueur, Chifoumi::UnCoup coupMachine, int scoreJoueur, int scoreMachine, chifoumiPresentation::etatJeu etatJeu)
+void ChifoumiVue::majInterface(Chifoumi::UnCoup coupJoueur, Chifoumi::UnCoup coupMachine, int scoreJoueur, int scoreMachine, int scoreMax, chifoumiPresentation::etatJeu etatJeu)
 {
     if (coupJoueur == Chifoumi::ciseau)
     {
@@ -98,6 +103,8 @@ void ChifoumiVue::majInterface(Chifoumi::UnCoup coupJoueur, Chifoumi::UnCoup cou
     ui->lScoreJoueur->setText(QString::number(scoreJoueur));
 
     ui->lScoreMachine->setText(QString::number(scoreMachine));
+
+    ui->lScoreMax->setText(QString::number(scoreMax));
 
     switch(etatJeu)
     {

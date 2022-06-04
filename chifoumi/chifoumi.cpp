@@ -2,7 +2,7 @@
  * Name:      chifoumiMain.h
  * Author:    P.Dagorret ()
  * Created:   2021-05-10
- * Description : classe métier (= modèle) Chifoumi-v1
+ * Description : classe mï¿½tier (= modï¿½le) Chifoumi-v1
  **************************************************************/
 #include "chifoumi.h"
 
@@ -10,16 +10,17 @@
 #include <ctime>
 
 
-    ///* ---- PARTIE MODèLE ---------------------------
+    ///* ---- PARTIE MODï¿½LE ---------------------------
 
 Chifoumi::Chifoumi():
+    scoreMax(5),
     scoreJoueur(0),
     scoreMachine(0),
     coupJoueur(rien),
     coupMachine(rien)
 {
     //ctor
-    // partie modèle
+    // partie modï¿½le
 }
 
 Chifoumi::~Chifoumi()
@@ -35,6 +36,11 @@ Chifoumi::UnCoup Chifoumi::getCoupJoueur() {
 
 Chifoumi::UnCoup Chifoumi::getCoupMachine() {
     return coupMachine;
+}
+
+unsigned int Chifoumi::getScoreMax()
+{
+    return scoreMax;
 }
 
 unsigned int Chifoumi::getScoreJoueur() {
@@ -93,17 +99,17 @@ char Chifoumi::determinerGagnant()
     return gagnantARetourner;
 }
 
-         ///* Méthodes utilitaires du Modèle
+         ///* Mï¿½thodes utilitaires du Modï¿½le
 
 int randMinMax(int min, int max){
-    /* pré-condition : min<max ;
-       Le nbre aléatoire est compris entre [min, max[ */
+    /* prï¿½-condition : min<max ;
+       Le nbre alï¿½atoire est compris entre [min, max[ */
    return rand()%(max-min) + min;
 }
 
 Chifoumi::UnCoup Chifoumi::genererUnCoup()
 {
-    UnCoup valeurGeneree;   // valeur à retourner
+    UnCoup valeurGeneree;   // valeur ï¿½ retourner
 
     switch (randMinMax(1,4)) {
         case 1:

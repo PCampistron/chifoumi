@@ -51,7 +51,9 @@ void chifoumiPresentation::jouerSigne(char c)
 
     _modele->majScores(_modele->determinerGagnant());
 
-    _vue->majInterface(_modele->getCoupJoueur(), _modele->getCoupMachine(), _modele->getScoreJoueur(), _modele->getScoreMachine(), getEtat());
+    _vue->majInterface(_modele->getCoupJoueur(), _modele->getCoupMachine(), _modele->getScoreJoueur(), _modele->getScoreMachine(), _modele->getScoreMax(), getEtat());
+
+    testGagnant();
 }
 
 chifoumiPresentation::etatJeu chifoumiPresentation::getEtat()
@@ -62,6 +64,34 @@ chifoumiPresentation::etatJeu chifoumiPresentation::getEtat()
 void chifoumiPresentation::setEtat(chifoumiPresentation::etatJeu etatVoulu)
 {
     etat = etatVoulu;
+}
+
+void chifoumiPresentation::testGagnant()
+{
+    if(_modele->getScoreJoueur() >= _modele->getScoreMax())
+    {
+        QMessageBox *msgBox = new QMessageBox;
+        msgBox->setIcon(QMessageBox::Information);
+        msgBox->setStandardButtons(QMessageBox::Ok);
+        msgBox->setText("Bravo Vous ! Vous gagnez avec 5 points.");
+        msgBox->setWindowTitle("Fin de partie");
+        msgBox->exec();
+
+        setEtat(etatInitial);
+        _vue->majInterface(_modele->getCoupJoueur(), _modele->getCoupMachine(), _modele->getScoreJoueur(), _modele->getScoreMachine(), _modele->getScoreMax(), getEtat());
+    }
+    if(_modele->getScoreMachine() >= _modele->getScoreMax())
+    {
+        QMessageBox *msgBox = new QMessageBox;
+        msgBox->setIcon(QMessageBox::Information);
+        msgBox->setStandardButtons(QMessageBox::Ok);
+        msgBox->setText("Bravo La Machine ! Vous gagnez avec 5 points.");
+        msgBox->setWindowTitle("Fin de partie");
+        msgBox->exec();
+
+        setEtat(etatInitial);
+        _vue->majInterface(_modele->getCoupJoueur(), _modele->getCoupMachine(), _modele->getScoreJoueur(), _modele->getScoreMachine(), _modele->getScoreMax(), getEtat());
+    }
 }
 
 void chifoumiPresentation::jouerCiseaux()
@@ -96,6 +126,11 @@ void chifoumiPresentation::initialiserPartie()
 
     setEtat(partieEnCours);
 
-    _vue->majInterface(_modele->getCoupJoueur(), _modele->getCoupMachine(), _modele->getScoreJoueur(), _modele->getScoreMachine(), getEtat());
+    _vue->majInterface(_modele->getCoupJoueur(), _modele->getCoupMachine(), _modele->getScoreJoueur(), _modele->getScoreMachine(), _modele->getScoreMax(), getEtat());
+}
+
+void chifoumiPresentation::demanderPremiereMajInterface()
+{
+    _vue->majInterface(_modele->getCoupJoueur(), _modele->getCoupMachine(), _modele->getScoreJoueur(), _modele->getScoreMachine(), _modele->getScoreMax(), getEtat());
 }
 

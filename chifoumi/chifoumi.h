@@ -28,6 +28,8 @@ class Chifoumi
             /* retourne le dernier coup joué par le joueur */
         UnCoup getCoupMachine();
             /* retourne le dernier coup joué par le joueur */
+        unsigned int getScoreMax();
+            /* retourne le score max à atteindre */
         unsigned int getScoreJoueur();
             /* retourne le score du joueur */
         unsigned int getScoreMachine();
@@ -76,6 +78,7 @@ class Chifoumi
 
          ///* Attributs du Modèle
      private:
+        unsigned int scoreMax;      // Score max à atteindre pour finir la partie
         unsigned int scoreJoueur;   // score actuel du joueur
         unsigned int scoreMachine;  // score actuel de la Machine
         UnCoup coupJoueur;          // dernier coup joué par le joueur
