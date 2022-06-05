@@ -9,7 +9,6 @@
 #include <cstdlib>
 #include <ctime>
 
-
     ///* ---- PARTIE MOD�LE ---------------------------
 
 Chifoumi::Chifoumi():
@@ -49,6 +48,16 @@ unsigned int Chifoumi::getScoreJoueur() {
 
 unsigned int Chifoumi::getScoreMachine() {
     return scoreMachine;
+}
+
+unsigned int Chifoumi::getTempsRestant()
+{
+    return tempsRestant;
+}
+
+unsigned int Chifoumi::getDureePartie()
+{
+    return dureePartie;
 }
 
 char Chifoumi::determinerGagnant()
@@ -176,4 +185,14 @@ void Chifoumi::initScores() {
 void Chifoumi::initCoups() {
     coupJoueur = rien;
     coupMachine = rien;
+}
+
+void Chifoumi::initTemps()
+{
+    tempsRestant = dureePartie;
+}
+
+void Chifoumi::decTemps()
+{
+    tempsRestant--;
 }

@@ -31,6 +31,9 @@ void ChifoumiVue::nvlleConnexion(QObject *c)
     connect(ui->bNouvellePartie, SIGNAL(clicked()),
             c, SLOT(initialiserPartie()));
 
+    connect(ui->bPause, SIGNAL(clicked()),
+            c, SLOT(actionPause()));
+
     connect(ui->actionA_propos_de, SIGNAL(triggered()),
             c, SLOT(aProposDe()));
 
@@ -54,11 +57,17 @@ void ChifoumiVue::supprConnexion(QObject *c)
     disconnect(ui->bNouvellePartie, SIGNAL(clicked()),
                c, SLOT(initialiserPartie()));
 
+    disconnect(ui->bPause, SIGNAL(clicked()),
+            c, SLOT(actionPause()));
+
+    disconnect(this, SIGNAL(premiereMajInterface()),
+            c, SLOT(demanderPremiereMajInterface()));
+
     disconnect(ui->actionA_propos_de, SIGNAL(triggered()),
                c, SLOT(aProposDe()));
 }
 
-void ChifoumiVue::majInterface(Chifoumi::UnCoup coupJoueur, Chifoumi::UnCoup coupMachine, int scoreJoueur, int scoreMachine, int scoreMax, chifoumiPresentation::etatJeu etatJeu)
+void ChifoumiVue::majInterface(Chifoumi::UnCoup coupJoueur, Chifoumi::UnCoup coupMachine, int scoreJoueur, int scoreMachine, int scoreMax, int tempsRestant, chifoumiPresentation::etatJeu etatJeu)
 {
     if (coupJoueur == Chifoumi::ciseau)
     {
@@ -106,17 +115,32 @@ void ChifoumiVue::majInterface(Chifoumi::UnCoup coupJoueur, Chifoumi::UnCoup cou
 
     ui->lScoreMax->setText(QString::number(scoreMax));
 
+    QString *temps = new QString("Tps restant (s) : ");
+
+    temps->append(QString::number(tempsRestant));
+
+    ui->lTempsRestant->setText(*temps);
+
     switch(etatJeu)
     {
     case chifoumiPresentation::etatInitial:
+        ui->bPause->setEnabled(false);
         ui->bCiseaux->setEnabled(false);
         ui->bFeuille->setEnabled(false);
         ui->bPierre->setEnabled(false);
         break;
     case chifoumiPresentation::partieEnCours:
+        ui->bPause->setEnabled(true);
         ui->bCiseaux->setEnabled(true);
         ui->bFeuille->setEnabled(true);
         ui->bPierre->setEnabled(true);
+        break;
+    case chifoumiPresentation::pause:
+        ui->bPause->setEnabled(true);
+        ui->bCiseaux->setEnabled(false);
+        ui->bFeuille->setEnabled(false);
+        ui->bPierre->setEnabled(false);
+        break;
     }
 }
 

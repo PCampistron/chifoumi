@@ -2,6 +2,7 @@
 #define CHIFOUMIPRESENTATION_H
 
 #include <QObject>
+#include <QTimer>
 #include "chifoumi.h"
 
 class ChifoumiVue;
@@ -10,7 +11,7 @@ class chifoumiPresentation : public QObject
 {
     Q_OBJECT
 public:
-    enum etatJeu {etatInitial, partieEnCours};
+    enum etatJeu {etatInitial, partieEnCours, pause};
     explicit chifoumiPresentation(Chifoumi *m, QObject *parent = nullptr);
     virtual ~chifoumiPresentation();
     Chifoumi* getModele();
@@ -23,14 +24,18 @@ public:
     void testGagnant();
 
 public slots:
+    void actionPause();
     void jouerCiseaux();
     void jouerFeuille();
     void jouerPierre();
     void initialiserPartie();
     void demanderPremiereMajInterface();
     void aProposDe();
+    void tic();
 
 private:
+    QTimer *timer;
+    const unsigned int intervalleTimer = 1000;
     bool etatBouton;
     Chifoumi *_modele;
     ChifoumiVue *_vue;

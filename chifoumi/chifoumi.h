@@ -8,6 +8,7 @@
 #define CHIFOUMI_H
 #include <iostream>
 
+
 using namespace std;
 
 class Chifoumi
@@ -34,6 +35,9 @@ class Chifoumi
             /* retourne le score du joueur */
         unsigned int getScoreMachine();
             /* retourne le score de la machine */
+        unsigned int getTempsRestant();
+            /* retourne le temps restant */
+        unsigned int getDureePartie();
         char determinerGagnant();
             /* détermine le gagnant 'J' pour joueur, 'M' pour machine, 'N' pour match nul
                en fonction du dernier coup joué par chacun d'eux */
@@ -74,10 +78,16 @@ class Chifoumi
         void initCoups();
             /* initialise à rien les attributs coupJoueur et coupMachine
                NON indispensable */
+        void initTemps();
+            /* Initialise le temps à la durée d'une partie */
+        void decTemps();
+            /* Décrémente le temps restant */
 
 
-         ///* Attributs du Modèle
+        ///* Attributs du Modèle
      private:
+        unsigned int dureePartie = 30;   // Durée d'une partie
+        unsigned int tempsRestant;  // Temps de la partie restante
         unsigned int scoreMax;      // Score max à atteindre pour finir la partie
         unsigned int scoreJoueur;   // score actuel du joueur
         unsigned int scoreMachine;  // score actuel de la Machine

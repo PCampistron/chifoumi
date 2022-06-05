@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>935</width>
-    <height>584</height>
+    <width>541</width>
+    <height>539</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -152,7 +152,7 @@
         <item>
          <layout class="QVBoxLayout" name="verticalLayout_2">
           <item>
-           <widget class="QLabel" name="label">
+           <widget class="QLabel" name="lIntituleScoreMax">
             <property name="palette">
              <palette>
               <active>
@@ -305,6 +305,16 @@
             </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="lTempsRestant">
+            <property name="styleSheet">
+             <string notr="true">color: rgb(66, 66, 66);</string>
+            </property>
+            <property name="text">
+             <string>Temps restant (s) : 30</string>
             </property>
            </widget>
           </item>
@@ -603,6 +613,16 @@
          </spacer>
         </item>
         <item>
+         <widget class="QPushButton" name="bPause">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="text">
+           <string>Pause</string>
+          </property>
+         </widget>
+        </item>
+        <item>
          <widget class="QPushButton" name="bNouvellePartie">
           <property name="text">
            <string>Nouvelle Partie</string>
@@ -623,7 +643,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>935</width>
+     <width>541</width>
      <height>21</height>
     </rect>
    </property>
