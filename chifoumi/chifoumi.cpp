@@ -27,6 +27,11 @@ Chifoumi::~Chifoumi()
     //dtor
 }
 
+string Chifoumi::getNomJoueur()
+{
+    return nomJoueur;
+}
+
         /// Getters
 
 Chifoumi::UnCoup Chifoumi::getCoupJoueur() {
@@ -138,6 +143,21 @@ Chifoumi::UnCoup Chifoumi::genererUnCoup()
         break;
     }
     return valeurGeneree;
+}
+
+void Chifoumi::setNomJoueur(string nom)
+{
+    nomJoueur = nom;
+}
+
+void Chifoumi::setDureePartie(int duree)
+{
+    dureePartie = duree;
+}
+
+void Chifoumi::setScoreMax(int max)
+{
+    scoreMax = max;
 }
 
         /// Setters

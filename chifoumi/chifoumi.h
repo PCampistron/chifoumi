@@ -25,6 +25,8 @@ class Chifoumi
         virtual ~Chifoumi();
 
         // Getters
+        string getNomJoueur();
+
         UnCoup getCoupJoueur();
             /* retourne le dernier coup joué par le joueur */
         UnCoup getCoupMachine();
@@ -50,6 +52,12 @@ class Chifoumi
 
         // Setters
     public:
+        void setNomJoueur(string);
+
+        void setDureePartie(int);
+
+        void setScoreMax(int);
+
         void setCoupJoueur(UnCoup p_coup);
             /* initialise l'attribut coupJoueur avec la valeur
                du paramètre p_coup */
@@ -86,6 +94,7 @@ class Chifoumi
 
         ///* Attributs du Modèle
      private:
+        string nomJoueur = "Vous";           // Nom du joueur
         unsigned int dureePartie = 30;   // Durée d'une partie
         unsigned int tempsRestant;  // Temps de la partie restante
         unsigned int scoreMax;      // Score max à atteindre pour finir la partie

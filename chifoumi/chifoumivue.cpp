@@ -37,6 +37,9 @@ void ChifoumiVue::nvlleConnexion(QObject *c)
     connect(ui->actionA_propos_de, SIGNAL(triggered()),
             c, SLOT(aProposDe()));
 
+    connect(ui->actionParametrer, SIGNAL(triggered()),
+            c, SLOT(configurerPartie()));
+
     connect(this, SIGNAL(premiereMajInterface()),
             c, SLOT(demanderPremiereMajInterface()));
 
@@ -67,7 +70,7 @@ void ChifoumiVue::supprConnexion(QObject *c)
                c, SLOT(aProposDe()));
 }
 
-void ChifoumiVue::majInterface(Chifoumi::UnCoup coupJoueur, Chifoumi::UnCoup coupMachine, int scoreJoueur, int scoreMachine, int scoreMax, int tempsRestant, chifoumiPresentation::etatJeu etatJeu)
+void ChifoumiVue::majInterface(Chifoumi::UnCoup coupJoueur, Chifoumi::UnCoup coupMachine, string nomJoueur, int scoreJoueur, int scoreMachine, int scoreMax, int tempsRestant, chifoumiPresentation::etatJeu etatJeu)
 {
     if (coupJoueur == Chifoumi::ciseau)
     {
@@ -108,6 +111,8 @@ void ChifoumiVue::majInterface(Chifoumi::UnCoup coupJoueur, Chifoumi::UnCoup cou
     {
         ui->lActionMachine->setPixmap(QPixmap(":/images/rien_115.png"));
     }
+
+    ui->lNomJoueur->setText(QString::fromStdString(nomJoueur));
 
     ui->lScoreJoueur->setText(QString::number(scoreJoueur));
 

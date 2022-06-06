@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QTimer>
+#include "configpartie.h"
 #include "chifoumi.h"
 
 class ChifoumiVue;
@@ -24,6 +25,7 @@ public:
     void testGagnant();
 
 public slots:
+    void configurerPartie();
     void actionPause();
     void jouerCiseaux();
     void jouerFeuille();
