@@ -10,6 +10,22 @@ chifoumiPresentation::chifoumiPresentation(Chifoumi *m, QObject *parent)
 {
     connect(timer, SIGNAL(timeout()),
             this, SLOT(tic()));
+
+//    while(true)
+//    {
+//        Connexion *connexion = new Connexion(nullptr);
+
+//        connexion->exec();
+
+//        username = connexion->getUsername();
+//        mdp = connexion->getMdp();
+
+//        if(connexionValide)
+//        {
+//            connexion->close();
+//            break;
+//        }
+//    }
 }
 
 chifoumiPresentation::~chifoumiPresentation() {
@@ -150,6 +166,16 @@ void chifoumiPresentation::testGagnant()
     }
 }
 
+void chifoumiPresentation::demanderConnexion()
+{
+    db = new database();
+
+    if(db->verifJoueurBD(username, mdp))
+    {
+        connexionValide = true;
+    }
+}
+
 void chifoumiPresentation::configurerPartie()
 {
     if(etat == etatInitial)
@@ -203,14 +229,13 @@ void chifoumiPresentation::aProposDe()
     QMessageBox *msgBox = new QMessageBox;
     msgBox->setIcon(QMessageBox::Information);
     msgBox->setStandardButtons(QMessageBox::Ok);
-    msgBox->setText("Version 5 \nProgramme modèle de Campistron - Doyhenard - Sokhna");
+    msgBox->setText("Version 7 \nProgramme modèle de Campistron - Doyhenard - Sokhna");
     msgBox->setWindowTitle("A propos de cette application");
     msgBox->exec();
 }
 
 void chifoumiPresentation::tic()
 {
-    qDebug() << "Tic";
     _modele->decTemps();
     _vue->majInterface(_modele->getCoupJoueur(), _modele->getCoupMachine(), _modele->getNomJoueur(), _modele->getScoreJoueur(), _modele->getScoreMachine(), _modele->getScoreMax(), _modele->getTempsRestant(), getEtat());
     testGagnant();

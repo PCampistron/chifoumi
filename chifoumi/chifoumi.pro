@@ -1,4 +1,4 @@
-QT       += core gui
+QT       += core gui sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -13,17 +13,22 @@ SOURCES += \
     chifoumipresentation.cpp \
     chifoumivue.cpp \
     configpartie.cpp \
+    connexion.cpp \
+    database.cpp \
     main.cpp
 
 HEADERS += \
     chifoumi.h \
     chifoumipresentation.h \
     chifoumivue.h \
-    configpartie.h
+    configpartie.h \
+    connexion.h \
+    database.h
 
 FORMS += \
     chifoumivue.ui \
-    configpartie.ui
+    configpartie.ui \
+    connexion.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

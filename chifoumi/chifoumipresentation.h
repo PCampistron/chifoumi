@@ -4,7 +4,9 @@
 #include <QObject>
 #include <QTimer>
 #include "configpartie.h"
+#include "connexion.h"
 #include "chifoumi.h"
+#include "database.h"
 
 class ChifoumiVue;
 
@@ -25,6 +27,7 @@ public:
     void testGagnant();
 
 public slots:
+    void demanderConnexion();
     void configurerPartie();
     void actionPause();
     void jouerCiseaux();
@@ -36,6 +39,10 @@ public slots:
     void tic();
 
 private:
+    QString username;
+    QString mdp;
+    bool connexionValide = false;
+    database *db;
     QTimer *timer;
     const unsigned int intervalleTimer = 1000;
     bool etatBouton;
