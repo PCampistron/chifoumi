@@ -8,7 +8,8 @@ chifoumiPresentation::chifoumiPresentation(Chifoumi *m, QObject *parent)
       _modele(m),
       etat(etatInitial)
 {
-
+    connect(timer, SIGNAL(timeout()),
+            this, SLOT(tic()));
 }
 
 chifoumiPresentation::~chifoumiPresentation() {
@@ -75,7 +76,10 @@ void chifoumiPresentation::testGagnant()
         QMessageBox *msgBox = new QMessageBox;
         msgBox->setIcon(QMessageBox::Information);
         msgBox->setStandardButtons(QMessageBox::Ok);
-        msgBox->setText("Bravo Vous ! Vous gagnez avec 5 points.");
+        QString *message = new QString("Bravo Vous ! Vous gagnez avec ");
+        message->append(QString::number(_modele->getScoreMax()));
+        message->append(" points.");
+        msgBox->setText(*message);
         msgBox->setWindowTitle("Fin de partie");
         msgBox->exec();
 
@@ -89,7 +93,10 @@ void chifoumiPresentation::testGagnant()
         QMessageBox *msgBox = new QMessageBox;
         msgBox->setIcon(QMessageBox::Information);
         msgBox->setStandardButtons(QMessageBox::Ok);
-        msgBox->setText("Bravo La Machine ! Vous gagnez avec 5 points.");
+        QString *message = new QString("Bravo La Machine ! Vous gagnez avec ");
+        message->append(QString::number(_modele->getScoreMax()));
+        message->append(" points.");
+        msgBox->setText(*message);
         msgBox->setWindowTitle("Fin de partie");
         msgBox->exec();
 
@@ -145,16 +152,19 @@ void chifoumiPresentation::testGagnant()
 
 void chifoumiPresentation::configurerPartie()
 {
-    ConfigPartie *config = new ConfigPartie(nullptr);
-
-    int accept = config->exec();
-
-    if(accept == QDialog::Accepted)
+    if(etat == etatInitial)
     {
-        _modele->setNomJoueur(config->getNomJoueur().toStdString());
-        _modele->setScoreMax(config->getScoreMax());
-        _modele->setDureePartie(config->getTempsMax());
-        _vue->majInterface(_modele->getCoupJoueur(), _modele->getCoupMachine(), _modele->getNomJoueur(), _modele->getScoreJoueur(), _modele->getScoreMachine(), _modele->getScoreMax(), _modele->getTempsRestant(), getEtat());
+        ConfigPartie *config = new ConfigPartie(nullptr);
+
+        int accept = config->exec();
+
+        if(accept == QDialog::Accepted)
+        {
+            _modele->setNomJoueur(config->getNomJoueur().toStdString());
+            _modele->setScoreMax(config->getScoreMax());
+            _modele->setDureePartie(config->getTempsMax());
+            _vue->majInterface(_modele->getCoupJoueur(), _modele->getCoupMachine(), _modele->getNomJoueur(), _modele->getScoreJoueur(), _modele->getScoreMachine(), _modele->getScoreMax(), _modele->getTempsRestant(), getEtat());
+        }
     }
 }
 
@@ -200,6 +210,7 @@ void chifoumiPresentation::aProposDe()
 
 void chifoumiPresentation::tic()
 {
+    qDebug() << "Tic";
     _modele->decTemps();
     _vue->majInterface(_modele->getCoupJoueur(), _modele->getCoupMachine(), _modele->getNomJoueur(), _modele->getScoreJoueur(), _modele->getScoreMachine(), _modele->getScoreMax(), _modele->getTempsRestant(), getEtat());
     testGagnant();
@@ -212,8 +223,7 @@ void chifoumiPresentation::initialiserPartie()
 
     setEtat(partieEnCours);
 
-    connect(timer, SIGNAL(timeout()),
-            this, SLOT(tic()));
+
 
     _modele->initTemps();
 

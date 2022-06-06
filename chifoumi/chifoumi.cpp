@@ -214,5 +214,5 @@ void Chifoumi::initTemps()
 
 void Chifoumi::decTemps()
 {
-    tempsRestant--;
+    tempsRestant = tempsRestant-1;
 }
