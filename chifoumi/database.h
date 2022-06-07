@@ -16,6 +16,7 @@ public:
     bool openDataBase();
     void closeDataBase();
     bool verifJoueurBD(QString, QString);
+    bool insererScore(QString, int, int);
 
 private:
     QSqlDatabase mydb;

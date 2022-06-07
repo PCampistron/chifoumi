@@ -52,5 +52,54 @@ bool database::verifJoueurBD(QString username, QString mdp)
         }
     }
 
+    closeDataBase();
+
     return verifOk;
+}
+
+bool database::insererScore(QString username, int scoreJoueur, int scoreMachine)
+{
+    bool bdOk;
+    bool inserOk = false;
+
+    bdOk = openDataBase();
+
+    if(!bdOk)
+    {
+        qDebug() << "Erreur dans l'ouverture de la table." << Qt::endl;
+    }
+    else
+    {
+        QSqlQuery query;
+
+        QString queryTxt = "INSERT INTO Scores (username, scoreJoueur, scoreMachine) VALUES ('";
+
+        queryTxt.append(username);
+
+        queryTxt.append("',");
+
+        queryTxt.append(QString::number(scoreJoueur));
+
+        queryTxt.append(",");
+
+        queryTxt.append(QString::number(scoreMachine));
+
+        queryTxt.append(");");
+
+        qDebug() << queryTxt;
+
+        if(!query.exec(queryTxt))
+        {
+            qDebug() << "Erreur lors de l'insertion" << Qt::endl;
+        }
+        else
+        {
+            inserOk = true;
+        }
+    }
+    qDebug() << inserOk;
+
+    closeDataBase();
+
+    return inserOk;
 }

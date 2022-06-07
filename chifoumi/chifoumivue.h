@@ -16,10 +16,12 @@ class ChifoumiVue : public QMainWindow
     Q_OBJECT
 
 public:
+    enum Joueur {humain, machine};
     ChifoumiVue(QWidget *parent = nullptr);
     ~ChifoumiVue();
     void nvlleConnexion(QObject *c);
     void supprConnexion(QObject *c);
+    void changerCouleurNom(Joueur);
     void majInterface(Chifoumi::UnCoup, Chifoumi::UnCoup, string, int, int, int, int, chifoumiPresentation::etatJeu);
 
 signals:

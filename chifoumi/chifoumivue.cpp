@@ -70,6 +70,24 @@ void ChifoumiVue::supprConnexion(QObject *c)
                c, SLOT(aProposDe()));
 }
 
+void ChifoumiVue::changerCouleurNom(ChifoumiVue::Joueur joueur)
+{
+    switch(joueur)
+    {
+    case ChifoumiVue::humain:
+        ui->lScoreJoueur->setStyleSheet("color: blue");
+        ui->lNomJoueur->setStyleSheet("color: blue");
+        ui->lScoreMachine->setStyleSheet("color: black");
+        ui->lNomMachine->setStyleSheet("color: black");
+        break;
+    case ChifoumiVue::machine:
+        ui->lScoreMachine->setStyleSheet("color: blue");
+        ui->lNomMachine->setStyleSheet("color: blue");
+        ui->lScoreJoueur->setStyleSheet("color: black");
+        ui->lNomJoueur->setStyleSheet("color: black");
+    }
+}
+
 void ChifoumiVue::majInterface(Chifoumi::UnCoup coupJoueur, Chifoumi::UnCoup coupMachine, string nomJoueur, int scoreJoueur, int scoreMachine, int scoreMax, int tempsRestant, chifoumiPresentation::etatJeu etatJeu)
 {
     if (coupJoueur == Chifoumi::ciseau)

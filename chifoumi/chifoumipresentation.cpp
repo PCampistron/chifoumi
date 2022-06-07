@@ -65,6 +65,7 @@ void chifoumiPresentation::jouerSigne(char c)
             _modele->setCoupJoueur(_modele->pierre);
             break;
     }
+    _vue->changerCouleurNom(ChifoumiVue::machine);
     _modele->majCoupMachine();
 
     _modele->majScores(_modele->determinerGagnant());
@@ -72,6 +73,7 @@ void chifoumiPresentation::jouerSigne(char c)
     _vue->majInterface(_modele->getCoupJoueur(), _modele->getCoupMachine(), _modele->getNomJoueur(), _modele->getScoreJoueur(), _modele->getScoreMachine(), _modele->getScoreMax(), _modele->getTempsRestant(), getEtat());
 
     testGagnant();
+    _vue->changerCouleurNom(ChifoumiVue::humain);
 }
 
 chifoumiPresentation::etatJeu chifoumiPresentation::getEtat()
@@ -99,7 +101,6 @@ void chifoumiPresentation::testGagnant()
         msgBox->setWindowTitle("Fin de partie");
         msgBox->exec();
 
-
         setEtat(etatInitial);
         _vue->majInterface(_modele->getCoupJoueur(), _modele->getCoupMachine(), _modele->getNomJoueur(), _modele->getScoreJoueur(), _modele->getScoreMachine(), _modele->getScoreMax(), _modele->getTempsRestant(), getEtat());
     }
@@ -115,7 +116,6 @@ void chifoumiPresentation::testGagnant()
         msgBox->setText(*message);
         msgBox->setWindowTitle("Fin de partie");
         msgBox->exec();
-
 
         setEtat(etatInitial);
         _vue->majInterface(_modele->getCoupJoueur(), _modele->getCoupMachine(), _modele->getNomJoueur(), _modele->getScoreJoueur(), _modele->getScoreMachine(), _modele->getScoreMax(), _modele->getTempsRestant(), getEtat());
@@ -159,8 +159,6 @@ void chifoumiPresentation::testGagnant()
             msgBox->setWindowTitle("Fin de partie");
             msgBox->exec();
         }
-
-
         setEtat(etatInitial);
         _vue->majInterface(_modele->getCoupJoueur(), _modele->getCoupMachine(), _modele->getNomJoueur(), _modele->getScoreJoueur(), _modele->getScoreMachine(), _modele->getScoreMax(), _modele->getTempsRestant(), getEtat());
     }
@@ -229,7 +227,7 @@ void chifoumiPresentation::aProposDe()
     QMessageBox *msgBox = new QMessageBox;
     msgBox->setIcon(QMessageBox::Information);
     msgBox->setStandardButtons(QMessageBox::Ok);
-    msgBox->setText("Version 7 \nProgramme modèle de Campistron - Doyhenard - Sokhna");
+    msgBox->setText("Version 6 \nProgramme modèle de Campistron - Doyhenard - Sokhna");
     msgBox->setWindowTitle("A propos de cette application");
     msgBox->exec();
 }
@@ -245,6 +243,8 @@ void chifoumiPresentation::initialiserPartie()
 {
     _modele->initCoups();
     _modele->initScores();
+
+    _vue->changerCouleurNom(ChifoumiVue::humain);
 
     setEtat(partieEnCours);
 

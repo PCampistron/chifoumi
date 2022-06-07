@@ -487,10 +487,20 @@
               </size>
              </property>
              <property name="styleSheet">
-              <string notr="true">background-image: url(:/images/pierre.gif);</string>
+              <string notr="true"/>
              </property>
              <property name="text">
               <string/>
+             </property>
+             <property name="icon">
+              <iconset resource="images.qrc">
+               <normaloff>:/images/pierre.gif</normaloff>:/images/pierre.gif</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>128</width>
+               <height>128</height>
+              </size>
              </property>
             </widget>
            </item>
@@ -528,10 +538,20 @@
               </size>
              </property>
              <property name="styleSheet">
-              <string notr="true">background-image: url(:/images/papier.gif);</string>
+              <string notr="true"/>
              </property>
              <property name="text">
               <string/>
+             </property>
+             <property name="icon">
+              <iconset resource="images.qrc">
+               <normaloff>:/images/papier.gif</normaloff>:/images/papier.gif</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>128</width>
+               <height>128</height>
+              </size>
              </property>
             </widget>
            </item>
@@ -569,10 +589,20 @@
               </size>
              </property>
              <property name="styleSheet">
-              <string notr="true">background-image: url(:/images/ciseau.gif);</string>
+              <string notr="true"/>
              </property>
              <property name="text">
               <string/>
+             </property>
+             <property name="icon">
+              <iconset resource="images.qrc">
+               <normaloff>:/images/ciseau.gif</normaloff>:/images/ciseau.gif</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>128</width>
+               <height>128</height>
+              </size>
              </property>
             </widget>
            </item>
@@ -644,7 +674,7 @@
      <x>0</x>
      <y>0</y>
      <width>541</width>
-     <height>21</height>
+     <height>20</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFichier">
